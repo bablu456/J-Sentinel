@@ -51,7 +51,7 @@ Unlike heavy GUI-based task managers, J-Sentinel is designed to be:
 ## ⚡ How to Run
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/YourUsername/J-Sentinel.git](https://github.com/YourUsername/J-Sentinel.git)
+    git clone [https://github.com/bablu456/J-Sentinel.git](https://github.com/bablu456/J-Sentinel.git)
     ```
 2.  **Navigate to directory:**
     ```bash
@@ -67,4 +67,4 @@ Unlike heavy GUI-based task managers, J-Sentinel is designed to be:
     ```
 
 ---
-*Built with ❤️ by [Your Name]*
+*Built with ❤️ by Bablu Kumar*
