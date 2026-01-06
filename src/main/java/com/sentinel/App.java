@@ -1,15 +1,21 @@
 package com.sentinel;
 
 import com.sentinel.services.SystemMonitor;
+import com.sentinel.ui.Dashboard;
+
 
 public class App {
     public static void main(String[] args){
-        System.out.println("J-Sentinel System Monitor Initializing...");
         SystemMonitor monitor = new SystemMonitor();
+        Dashboard dashboard = new Dashboard();
 
-        System.out.println("OS: "+ monitor.getOsName());
-        System.out.println(monitor.getMemoryInfo());
-        System.out.println("Measuring CPU (Please wait 1 second)...");
-        System.out.println(monitor.getCpuLoad());
+        while(true){
+            dashboard.render(monitor);
+            try{
+                Thread.sleep(1500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
