@@ -21,7 +21,6 @@ public class SystemMonitor {
         return systemInfo.getOperatingSystem().toString();
     }
 
-    // RAM ki details return karega (Used vs Total)
     public String getMemoryInfo() {
         GlobalMemory memory = hardware.getMemory();
         long totalMemory = memory.getTotal();
@@ -31,7 +30,6 @@ public class SystemMonitor {
         return "RAM: " + formatBytes(usedMemory) + " / " + formatBytes(totalMemory);
     }
 
-    // CPU Load percentage return karega
     public String getCpuLoad() {
         CentralProcessor processor = hardware.getProcessor();
         // CPU snapshot lo -> Wait karo -> Doosra snapshot lo -> Compare karo
