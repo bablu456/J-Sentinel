@@ -54,4 +54,15 @@ public class SystemMonitor {
             return df.format((double) bytes / (1024 * 1024)) + " MB";
         }
     }
+    // SystemMonitor.java ke andar add karo:
+
+    public oshi.hardware.GlobalMemory getGlobalMemory() {
+        return hardware.getMemory();
+    }
+
+    public double getRawCpuLoad() {
+        long[] prevTicks = hardware.getProcessor().getSystemCpuLoadTicks();
+        try { Thread.sleep(1000); } catch (InterruptedException e) {}
+        return hardware.getProcessor().getSystemCpuLoadBetweenTicks(prevTicks) * 100;
+    }
 }

@@ -38,4 +38,5 @@ public class SystemMetrics {
     public void setCpuCritical(boolean cpuCritical){
         isCpuCritical = cpuCritical;
     }
+
 }
