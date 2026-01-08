@@ -1,29 +1,41 @@
 package com.sentinel.ui;
 
-import com.sentinel.services.SystemMonitor;
+import com.sentinel.model.SystemMetrics;
 import com.sentinel.utils.ConsoleUtils;
+import java.awt.Toolkit; // Sound ke liye
 
 public class Dashboard {
 
-    // Ye method data lega aur screen par draw karega
-    public void render(com.sentinel.model.SystemMetrics metrics) {
-        // Screen saaf karo
+    public void render(SystemMetrics metrics) {
         ConsoleUtils.clearScreen();
-
-        // Header print karo
         ConsoleUtils.printHeader();
+        System.out.println("");
 
-        System.out.println(""); // Empty line
-
-        // System Info Section
         System.out.println(ConsoleUtils.YELLOW + "[ SYSTEM DETAILS ]" + ConsoleUtils.RESET);
         System.out.println("OS Name:    " + metrics.getOsName());
         System.out.println("");
 
-        // Resources Section (Table format)
         System.out.println(ConsoleUtils.YELLOW + "[ LIVE RESOURCES ]" + ConsoleUtils.RESET);
-        System.out.printf("RAM Usage:  %s%n", metrics.getRamUsage());
-        System.out.printf("CPU Load:   %s%n", metrics.getCpuLoad());
+
+        // --- RAM Display Logic ---
+        String ramColor = metrics.isRamCritical() ? ConsoleUtils.RED : ConsoleUtils.GREEN;
+        System.out.print("RAM Usage:  " + ramColor + metrics.getRamUsage() + ConsoleUtils.RESET);
+
+        if (metrics.isRamCritical()) {
+            System.out.print(ConsoleUtils.RED + " [WARNING: HIGH USAGE]" + ConsoleUtils.RESET);
+            Toolkit.getDefaultToolkit().beep(); // Sound karega
+        }
+        System.out.println();
+
+        // --- CPU Display Logic ---
+        String cpuColor = metrics.isCpuCritical() ? ConsoleUtils.RED : ConsoleUtils.GREEN;
+        System.out.print("CPU Load:   " + cpuColor + metrics.getCpuLoad() + ConsoleUtils.RESET);
+
+        if (metrics.isCpuCritical()) {
+            System.out.print(ConsoleUtils.RED + " [WARNING: OVERHEAT]" + ConsoleUtils.RESET);
+            Toolkit.getDefaultToolkit().beep();
+        }
+        System.out.println();
 
         System.out.println("");
         System.out.println(ConsoleUtils.CYAN + "----------------------------------------" + ConsoleUtils.RESET);
