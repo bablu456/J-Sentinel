@@ -5,6 +5,9 @@ public class SystemMetrics {
     private volatile String cpuLoad = "Calculating...";
     private volatile String osName = "Calculating...";
 
+    private volatile boolean isRamCritical = false;
+    private volatile boolean isCpuCritical = false;
+
     public String getRamUsage() {
         return ramUsage;
     }
@@ -22,5 +25,17 @@ public class SystemMetrics {
     }
     public void setOsName(String osName) {
         this.osName = osName;
+    }
+    public boolean isRamCritical() {
+        return isRamCritical;
+    }
+    public void setRamCritical(boolean ramCritical) {
+        isRamCritical = ramCritical;
+    }
+    public boolean isCpuCritical(){
+        return isCpuCritical;
+    }
+    public void setCpuCritical(boolean cpuCritical){
+        isCpuCritical = cpuCritical;
     }
 }
