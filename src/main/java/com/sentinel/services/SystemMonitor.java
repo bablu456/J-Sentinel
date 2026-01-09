@@ -46,7 +46,7 @@ public class SystemMonitor {
     }
 
     // Bytes ko GB/MB me convert karne ka helper method
-    private String formatBytes(long bytes) {
+    public String formatBytes(long bytes) {
         long limit = 1024L * 1024L * 1024L; // 1 GB
         if (bytes >= limit) {
             return df.format((double) bytes / limit) + " GB";
