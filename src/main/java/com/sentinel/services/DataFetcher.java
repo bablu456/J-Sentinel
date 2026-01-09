@@ -1,14 +1,14 @@
 package com.sentinel.services;
 
 import com.sentinel.model.SystemMetrics;
+import com.sentinel.utils.Logger; // Import zaroor karna
 
 public class DataFetcher implements Runnable {
 
+    // ... (Purana code same rahega variables ka)
     private final SystemMonitor monitor;
     private final SystemMetrics metrics;
-
-    // Threshold Limit (80%)
-    private static final double CRITICAL_THRESHOLD = 80.0;
+    private static final double CRITICAL_THRESHOLD = 80.0; // Isko wapas 80 kar dena agar 0 kiya tha to
 
     public DataFetcher(SystemMetrics metrics) {
         this.metrics = metrics;
@@ -19,31 +19,33 @@ public class DataFetcher implements Runnable {
     @Override
     public void run() {
         try {
-            // 1. Raw Data lo
-            // Note: Hamein yahan thoda logic badalna padega taaki raw numbers mil sakein
-            // Lekin simplicity ke liye hum SystemMonitor se naya logic yahi likh dete hain
-
-            // --- RAM LOGIC ---
+            // ... (RAM logic same rahega) ...
             long totalMem = monitor.getGlobalMemory().getTotal();
             long availableMem = monitor.getGlobalMemory().getAvailable();
             long usedMem = totalMem - availableMem;
-
             double ramPercentage = ((double)usedMem / totalMem) * 100;
 
-            // Set Text
             metrics.setRamUsage(monitor.formatBytes(usedMem) + " / " + monitor.formatBytes(totalMem));
-            // Set Alert
-            metrics.setRamCritical(ramPercentage > CRITICAL_THRESHOLD);
 
-            // --- CPU LOGIC ---
-            // Note: Hum SystemMonitor ka helper method use kar rahe the,
-            // par ab hame raw percentage chahiye check karne ke liye.
-            double cpuLoad = monitor.getRawCpuLoad(); // *Is method ko SystemMonitor me add karna padega, niche dekho
+            boolean isRamCritical = ramPercentage > CRITICAL_THRESHOLD;
+            metrics.setRamCritical(isRamCritical);
 
-            // Set Text
+            // LOGGING LOGIC FOR RAM
+            if (isRamCritical) {
+                Logger.log("CRITICAL", "High RAM Usage detected: " + String.format("%.2f%%", ramPercentage));
+            }
+
+            // ... (CPU Logic same rahega) ...
+            double cpuLoad = monitor.getRawCpuLoad();
             metrics.setCpuLoad(String.format("%.2f%%", cpuLoad));
-            // Set Alert
-            metrics.setCpuCritical(cpuLoad > CRITICAL_THRESHOLD);
+
+            boolean isCpuCritical = cpuLoad > CRITICAL_THRESHOLD;
+            metrics.setCpuCritical(isCpuCritical);
+
+            // LOGGING LOGIC FOR CPU
+            if (isCpuCritical) {
+                Logger.log("CRITICAL", "High CPU Load detected: " + String.format("%.2f%%", cpuLoad));
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
