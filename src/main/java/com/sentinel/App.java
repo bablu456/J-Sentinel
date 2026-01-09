@@ -3,6 +3,7 @@ package com.sentinel;
 import com.sentinel.model.SystemMetrics;
 import com.sentinel.services.DataFetcher;
 import com.sentinel.ui.Dashboard;
+import com.sentinel.utils.Logger;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -10,8 +11,9 @@ import java.util.concurrent.TimeUnit;
 
 public class App {
     public static void main(String[] args) {
-        System.out.println("Starting J-Sentinel Engines...");
+        Logger.log("INFO", "J-Sentinel Application Started.");
 
+        System.out.println("Starting J-Sentinel Engines...");
         // 1. Shared Data Model (Box)
         SystemMetrics metrics = new SystemMetrics();
 
