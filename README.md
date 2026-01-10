@@ -1,6 +1,6 @@
 # 🛡️ J-Sentinel | System Health Monitor
 
-![Java](https://img.shields.io/badge/Language-Java_17%2B-orange) ![Build](https://img.shields.io/badge/Build-Maven-blue) ![Status](https://img.shields.io/badge/Status-Active_Development-green)
+![Java](https://img.shields.io/badge/Language-Java_17%2B-orange) ![Build](https://img.shields.io/badge/Build-Maven-blue) ![Status](https://img.shields.io/badge/Status-Completed-brightgreen)
 
 > **A lightweight, CLI-based real-time system monitoring tool designed for servers and developer environments.**
 
@@ -16,12 +16,13 @@ Unlike heavy GUI-based task managers, J-Sentinel is designed to be:
 
 ---
 
-## 🚀 Key Features (Planned & Implemented)
+## 🚀 Key Features
 - [x] **Core Architecture:** Maven-based modular structure.
-- [ ] **Real-Time Dashboard:** Updates CPU & RAM usage every second.
-- [ ] **Intelligent Alerts:** Visual/Audio warnings when resources hit >90%.
-- [ ] **Logging System:** Auto-saves critical events to `system-health.log`.
-- [ ] **Cross-Platform:** Works on Windows, Linux, and macOS.
+- [x] **Real-Time Dashboard:** Updates CPU & RAM usage every second.
+- [x] **Intelligent Alerts:** Visual (Red Text) & Audio (Beep) warnings when resources hit >80%.
+- [x] **Logging System:** Auto-saves critical events and startup logs to `system-health.log`.
+- [x] **Cross-Platform:** Works on Windows, Linux, and macOS.
+- [x] **Production Ready:** packaged as a standalone Executable JAR.
 
 ---
 
@@ -30,21 +31,22 @@ Unlike heavy GUI-based task managers, J-Sentinel is designed to be:
 * **Build Tool:** Apache Maven
 * **Hardware Abstraction:** OSHI (Open System Hardware Intelligence)
 * **Concurrency:** Java `ExecutorService` & Multithreading
+* **IO:** Java IO for file logging.
 
 ---
 
 ## 📅 The 7-Day Dev Journey
-*This project is being built as part of a rigorous "7-Day Open Source Challenge" to simulate a production-level sprint.*
+*This project was built as part of a rigorous "7-Day Open Source Challenge" to simulate a production-level sprint.*
 
 | Day | Date | Focus Area | Status |
 | :--- | :--- | :--- | :--- |
 | **Day 1** | Jan 04 | **Inception & Setup:** Initialized Repo, Maven Architecture, & Main Entry Point. | ✅ Completed |
-| **Day 2** | Jan 05 | **Data Harvesting:** Implementing CPU & Memory logic using OSHI. | ⏳ Pending |
-| **Day 3** | Jan 06 | **The UI:** Building the CLI Dashboard & Render logic. | ⏳ Pending |
-| **Day 4** | Jan 07 | **Concurrency:** Implementing Multithreading for real-time updates. | ⏳ Pending |
-| **Day 5** | Jan 08 | **Alert System:** Logic for critical warnings (Red Alerts). | ⏳ Pending |
-| **Day 6** | Jan 09 | **Logging & Reports:** File I/O for persistent tracking. | ⏳ Pending |
-| **Day 7** | Jan 10 | **Release:** Code cleanup, JAR packaging, and Documentation. | ⏳ Pending |
+| **Day 2** | Jan 05 | **Data Harvesting:** Implementing CPU & Memory logic using OSHI. | ✅ Completed |
+| **Day 3** | Jan 06 | **The UI:** Building the CLI Dashboard & Render logic. | ✅ Completed |
+| **Day 4** | Jan 07 | **Concurrency:** Implementing Multithreading for real-time updates. | ✅ Completed |
+| **Day 5** | Jan 08 | **Alert System:** Logic for critical warnings (Red Alerts). | ✅ Completed |
+| **Day 6** | Jan 09 | **Logging & Reports:** File I/O for persistent tracking. | ✅ Completed |
+| **Day 7** | Jan 10 | **Release:** Code cleanup, Executable JAR packaging, and Final Docs. | ✅ Completed |
 
 ---
 
@@ -59,11 +61,11 @@ Unlike heavy GUI-based task managers, J-Sentinel is designed to be:
     ```
 3.  **Build the project:**
     ```bash
-    mvn clean install
+    mvn clean package
     ```
-4.  **Run:**
+4.  **Run the Application:**
     ```bash
-    java -jar target/j-sentinel-1.0.jar
+    java -jar target/j-sentinel-1.0-SNAPSHOT.jar
     ```
 
 ---
